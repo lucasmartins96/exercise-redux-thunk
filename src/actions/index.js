@@ -10,7 +10,10 @@ export function fetchAPI() {
     try {
       dispatch(requestAPI());
       const request = await fetch(api);
-    const response = await request.json();
-    dispatch(getPicture(response));
+      const data = await request.json();
+      dispatch(getPicture(data));
+    } catch (error) {
+      console.error(error);
+    }
   }
 }
