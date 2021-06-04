@@ -7,6 +7,7 @@ export const getPicture = (data) => ({ type: GET_PICTURE, data });
 
 export function fetchAPI() {
   return async (dispatch, getState, api) => {
+    try {
     dispatch(requestAPI());
     const request = await fetch(api);
     const response = await request.json();
