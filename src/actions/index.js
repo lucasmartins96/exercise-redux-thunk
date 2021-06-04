@@ -6,5 +6,14 @@ export const requestAPI = () => ({ type: REQUEST_API });
 export const getPicture = (data) => ({ type: GET_PICTURE, data });
 
 export function fetchAPI() {
-  // Desenvolva aqui o código da action assíncrona
+  return async (dispatch, getState, api) => {
+    try {
+      dispatch(requestAPI());
+      const request = await fetch(api);
+      const data = await request.json();
+      dispatch(getPicture(data));
+    } catch (error) {
+      console.error(error);
+    }
+  }
 }
